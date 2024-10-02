@@ -3,26 +3,7 @@ import { Flex, Layout } from 'antd';
 import {Navbar} from './components/Navbar';
 import {Workspace} from './components/Workspace'
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Hello World 14563455 
-        </p>
-      </header>
-    </div>
-  );
-}
-
-const contentStyle: React.CSSProperties = {
-  textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#0958d9',
-};
+import { Footer } from 'antd/es/layout/layout';
 
 const footerStyle: React.CSSProperties = {
   textAlign: 'center',
