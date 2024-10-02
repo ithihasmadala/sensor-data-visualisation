@@ -1,6 +1,6 @@
-import { Line } from '@ant-design/charts'
-import { Col, Row } from 'antd'
-import React, { useEffect, useState } from 'react'
+import { Col, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
+import Chart from './Chart';
 
 export const Workspace: React.FC<any> = () => {
     const data = [
@@ -15,11 +15,13 @@ export const Workspace: React.FC<any> = () => {
         { year: '1999', value: 13 }
     ]
 
-    const props = {
+    const data = {
         data,
         xField: 'year',
         yField: 'value'
     }
+
+    const sensors = ['ph', 'turbity']
 
     return (
         <Row
@@ -29,28 +31,9 @@ export const Workspace: React.FC<any> = () => {
                 justifyContent: 'space-between'
             }}
         >
-            <Col
-                style={{
-                    padding: '16px',
-                    margin: '16px',
-                    flex: '1',
-                    border: '1px solid #ccc',
-                    borderRadius: '8px'
-                }}
-            >
-                <Line {...props} />
-            </Col>
-            <Col
-                style={{
-                    padding: '16px',
-                    margin: '16px',
-                    flex: '1',
-                    border: '1px solid #ccc',
-                    borderRadius: '8px'
-                }}
-            >
-                <Line {...props} />
-            </Col>
+            {sensors.map((sensor, index) => (
+                <Chart data={data} sensor={sensor} key={index}/>
+            ))}
         </Row>
     )
 }
