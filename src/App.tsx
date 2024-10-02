@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex, Layout } from 'antd';
-import Navbar from './components/Navbar';
+import {Navbar} from './components/Navbar';
+import {Workspace} from './components/Workspace'
 
 const { Footer, Content } = Layout;
 
@@ -27,7 +28,7 @@ const App: React.FC = () => (
   <Flex gap="middle" wrap>
     <Layout style={layoutStyle}>
       <Navbar />
-      <Content style={contentStyle}>Content</Content>
+      <Workspace />
       <Footer style={footerStyle}>Footer</Footer>
     </Layout>
   </Flex>

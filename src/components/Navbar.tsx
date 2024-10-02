@@ -4,7 +4,7 @@ import { Menu, Input, Space } from 'antd';
 const { Search } = Input;
 
 
-const Navbar: React.FC<any> = () => {
+export const Navbar: React.FC<any> = () => {
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: '1rem' }}>
@@ -16,5 +16,3 @@ const Navbar: React.FC<any> = () => {
     </>
   );
 };
-
-export default Navbar;
