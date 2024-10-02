@@ -155,7 +155,7 @@ export const Workspace: React.FC<any> = () => {
                         const result = await response.json();
 
                         const mappedData = result.feeds.map((feed: any) => ({
-                            timestamp: new Date(feed.created_at).getTime(),
+                            timestamp: new Date(feed.created_at),
                             value: feed[`field${index + 1}`], // Ensure correct field access here
                             entryId: feed.entry_id
                         }));
