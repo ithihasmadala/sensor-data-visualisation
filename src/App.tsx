@@ -2,8 +2,19 @@ import React from 'react';
 import { Flex, Layout } from 'antd';
 import {Navbar} from './components/Navbar';
 import {Workspace} from './components/Workspace'
+import './App.css';
 
-const { Footer, Content } = Layout;
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>
+          Hello World 14563455 
+        </p>
+      </header>
+    </div>
+  );
+}
 
 const contentStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -24,7 +35,7 @@ const layoutStyle = {
   overflow: 'hidden',
 };
 
-const App: React.FC = () => (
+export const App: React.FC = () => (
   <Flex gap="middle" wrap>
     <Layout style={layoutStyle}>
       <Navbar />
@@ -33,5 +44,3 @@ const App: React.FC = () => (
     </Layout>
   </Flex>
 );
-
-export default App;
