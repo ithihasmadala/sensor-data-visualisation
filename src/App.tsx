@@ -8,12 +8,18 @@ import {Footer} from 'antd/es/layout/layout'
 const footerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#fff',
-    backgroundColor: '#4096ff'
+    backgroundColor: '#4096ff',
+    position: 'fixed',
+    left: 0,
+    bottom: 0,
+    width: '100%'
 }
 
-const layoutStyle = {
-    borderRadius: 8,
-    overflow: 'hidden'
+const layoutStyle: React.CSSProperties = {
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingBottom: '60px'
 }
 
 export const App: React.FC = () => (
