@@ -2,24 +2,14 @@ import React from 'react'
 import {Flex, Layout} from 'antd'
 import {Navbar} from './components/Navbar'
 import {Workspace} from './components/Workspace'
+import {Footer} from './components/Footer'
 import './App.css'
-import {Footer} from 'antd/es/layout/layout'
-
-const footerStyle: React.CSSProperties = {
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#4096ff',
-    position: 'fixed',
-    left: 0,
-    bottom: 0,
-    width: '100%'
-}
 
 const layoutStyle: React.CSSProperties = {
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    paddingBottom: '60px'
+    paddingBottom: '50px'
 }
 
 export const App: React.FC = () => (
@@ -27,7 +17,7 @@ export const App: React.FC = () => (
         <Layout style={layoutStyle}>
             <Navbar />
             <Workspace />
-            <Footer style={footerStyle}>Footer</Footer>
+            <Footer />
         </Layout>
     </Flex>
 )
