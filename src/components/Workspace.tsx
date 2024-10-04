@@ -1,6 +1,7 @@
 import React from 'react'
 import {Row, Col, Spin, Typography} from 'antd'
 import {Chart} from './Chart'
+import {GpsMap} from './GpsMap'
 import {workspaceStyle, loadingContainerStyle, rowStyle} from '../styles/layout'
 import {useSensorData} from '../hooks/useSensorData'
 import {formatTimeString} from '../utils/CommonUtils'
@@ -12,7 +13,7 @@ interface WorkspaceProps {
 }
 
 export const Workspace: React.FC<WorkspaceProps> = ({isDarkMode}) => {
-    const {fieldsMapping, sensorData, loading, lastUpdated} = useSensorData()
+    const {fieldsMapping, sensorData, loading, lastUpdated, gpsData} = useSensorData()
 
     if (loading) {
         return (
@@ -43,6 +44,15 @@ export const Workspace: React.FC<WorkspaceProps> = ({isDarkMode}) => {
                         />
                     </Col>
                 ))}
+            </Row>
+            <Row style={{marginTop: '20px'}}>
+                <Col span={24}>
+                    <GpsMap
+                        latitude={gpsData?.latitude ?? null}
+                        longitude={gpsData?.longitude ?? null}
+                        isDarkMode={isDarkMode}
+                    />
+                </Col>
             </Row>
         </div>
     )

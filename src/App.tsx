@@ -5,6 +5,7 @@ import {Workspace} from './components/Workspace'
 import {Footer} from './components/Footer'
 import {layoutStyle, contentStyle} from './styles/layout'
 import './App.css'
+import 'leaflet/dist/leaflet.css'
 
 const {Content} = Layout
 

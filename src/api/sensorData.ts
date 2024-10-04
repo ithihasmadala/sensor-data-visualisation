@@ -8,6 +8,12 @@ export type SensorData = {
     entryId: string
 }
 
+export interface GpsData {
+    latitude: number
+    longitude: number
+    timestamp: Date
+}
+
 export const fetchFieldsMapping = async (): Promise<FieldsMapping> => {
     try {
         const response = await fetch(
@@ -46,5 +52,31 @@ export const fetchSensorDataForField = async (
     } catch (error) {
         console.error(`Error fetching data for ${sensorName}:`, error)
         throw error
+    }
+}
+
+export const fetchGpsData = async (): Promise<GpsData | null> => {
+    try {
+        const response = await fetch(
+            'https://api.thingspeak.com/channels/2617252/feeds/last.json?api_key=S7MH5E4KBNVDFCHY'
+        )
+        const result = await response.json()
+
+        const latitude = parseFloat(result.field7)
+        const longitude = parseFloat(result.field8)
+
+        if (isNaN(latitude) || isNaN(longitude)) {
+            console.warn('Invalid GPS data received:', result)
+            return null
+        }
+
+        return {
+            latitude,
+            longitude,
+            timestamp: new Date(result.created_at)
+        }
+    } catch (error) {
+        console.error('Error fetching GPS data:', error)
+        return null
     }
 }

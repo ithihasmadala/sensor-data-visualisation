@@ -1,5 +1,5 @@
 import {useState, useEffect, useCallback, useRef} from 'react'
-import {fetchFieldsMapping, fetchSensorDataForField} from '../api/sensorData'
+import {fetchFieldsMapping, fetchSensorDataForField, fetchGpsData, GpsData} from '../api/sensorData'
 
 const UPDATE_INTERVAL = 2 * 60 * 1000 // 2 minutes in milliseconds
 
@@ -8,12 +8,14 @@ export const useSensorData = () => {
     const [sensorData, setSensorData] = useState<{[key: string]: any[]}>({})
     const [loading, setLoading] = useState(true)
     const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
+    const [gpsData, setGpsData] = useState<GpsData | null>(null)
     const initialFetchRef = useRef(false)
 
     const fetchData = useCallback(async () => {
         try {
-            const mapping = await fetchFieldsMapping()
+            const [mapping, gpsData] = await Promise.all([fetchFieldsMapping(), fetchGpsData()])
             setFieldsMapping(mapping)
+            setGpsData(gpsData)
 
             const dataPromises = Object.entries(mapping).map(([_, sensor], index) =>
                 fetchSensorDataForField(sensor, index + 1)
@@ -44,5 +46,5 @@ export const useSensorData = () => {
         return () => clearInterval(intervalId)
     }, [fetchData])
 
-    return {fieldsMapping, sensorData, loading, lastUpdated}
+    return {fieldsMapping, sensorData, loading, lastUpdated, gpsData}
 }

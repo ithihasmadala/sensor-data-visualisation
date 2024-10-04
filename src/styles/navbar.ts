@@ -5,7 +5,13 @@ export const headerStyle = (isDarkMode: boolean): CSSProperties => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     background: isDarkMode ? '#141414' : '#001529',
-    padding: '0 20px'
+    padding: '0 20px',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    height: '64px'
 })
 
 export const logoStyle: CSSProperties = {

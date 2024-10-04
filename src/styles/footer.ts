@@ -10,7 +10,9 @@ export const footerStyle = (isDarkMode: boolean): CSSProperties => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: '70px',
+    zIndex: 1000
 })
 
 export const textStyle = (isDarkMode: boolean): CSSProperties => ({
