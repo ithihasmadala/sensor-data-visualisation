@@ -45,7 +45,7 @@ export const fetchSensorDataForField = async (
 
         return result.feeds.map((feed: any) => ({
             timestamp: new Date(feed.created_at),
-            value: feed[`field${fieldNumber}`],
+            value: Number(feed[`field${fieldNumber}`]),
             sensorName,
             entryId: feed.entry_id
         }))

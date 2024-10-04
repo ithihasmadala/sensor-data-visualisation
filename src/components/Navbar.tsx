@@ -4,12 +4,7 @@ import {InfoCircleOutlined, SettingOutlined} from '@ant-design/icons'
 import {Toggle} from './Toggle/Toggle'
 import {About} from './About'
 import {SettingsModal} from './SettingsModal'
-import {
-    headerStyle,
-    titleStyle,
-    buttonStyle,
-    navItemsContainerStyle
-} from '../styles/navbar'
+import {headerStyle, titleStyle, buttonStyle, navItemsContainerStyle} from '../styles/navbar'
 import styled from 'styled-components'
 import {SensorType} from '../types/sensors'
 

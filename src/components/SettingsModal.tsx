@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import { Modal, Form, Slider, InputNumber, Row, Col, Space, Button, Typography } from 'antd'
-import { SensorType, sensorRanges, ThresholdSettings, DEFAULT_SETTINGS } from '../types/sensors'
+import React, {useEffect} from 'react'
+import {Modal, Form, Slider, InputNumber, Row, Col, Space, Button, Typography, Divider} from 'antd'
+import {SensorType, sensorRanges, ThresholdSettings, DEFAULT_SETTINGS} from '../types/sensors'
 import styled from 'styled-components'
 
-const { Text, Title, Paragraph } = Typography
+const {Text, Title, Paragraph} = Typography
 
 const StyledModal = styled(Modal)`
     .ant-modal-content {
@@ -46,7 +46,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     const [form] = Form.useForm<ThresholdSettings>()
 
     useEffect(() => {
-        const formValues: ThresholdSettings = { ...initialSettings }
+        const formValues: ThresholdSettings = {...initialSettings}
         sensors.forEach(sensor => {
             if (!formValues[sensor]) {
                 formValues[sensor] = [
@@ -82,9 +82,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </Button>
             ]}
         >
-            <Paragraph style={{ marginBottom: 16 }}>
-                Adjust the threshold ranges for each sensor and set the number of consecutive out-of-bounds values to trigger an alert.
+            <Paragraph style={{marginBottom: 16}}>
+                Adjust the threshold ranges for each sensor and set the number of consecutive
+                out-of-bounds values to trigger an alert.
             </Paragraph>
+            <Divider style={{margin: '16px 0'}} />
             <Form form={form} layout="vertical" onValuesChange={handleValuesChange}>
                 {sensors.map(sensor => {
                     const range = sensorRanges[sensor]
