@@ -5,15 +5,18 @@ import {Line} from '@ant-design/charts'
 import {SensorData} from '../api/sensorData'
 import {cardStyle} from '../styles/chart'
 import {exportToCSV, exportToJSON} from '../utils/CommonUtils'
+import {SensorType} from '../types/sensors'
 
 interface ChartProps {
     data: SensorData[]
-    sensor: string
+    sensor: SensorType
     index: number
     isDarkMode: boolean
+    threshold: [number, number]
+    alertCount: number
 }
 
-export const Chart: React.FC<ChartProps> = ({data, sensor, isDarkMode}) => {
+export const Chart: React.FC<ChartProps> = ({data, sensor, isDarkMode, threshold, alertCount}) => {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [exportType, setExportType] = useState<'csv' | 'json'>('csv')
 

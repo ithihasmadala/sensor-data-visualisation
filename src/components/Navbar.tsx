@@ -1,44 +1,63 @@
 import React, {useState} from 'react'
 import {Layout, Typography, Button} from 'antd'
-import {InfoCircleOutlined} from '@ant-design/icons'
+import {InfoCircleOutlined, SettingOutlined} from '@ant-design/icons'
 import {Toggle} from './Toggle/Toggle'
 import {About} from './About'
+import {SettingsModal} from './SettingsModal'
 import {
     headerStyle,
-    logoStyle,
     titleStyle,
     buttonStyle,
     navItemsContainerStyle
 } from '../styles/navbar'
 import styled from 'styled-components'
+import {SensorType} from '../types/sensors'
 
 const {Header} = Layout
 const {Title} = Typography
 
 const StyledButton = styled(Button)`
-    .ant-btn-icon {
-        .anticon {
-            svg {
-                path {
-                    fill: transparent;
-                }
-            }
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    margin-right: 16px;
+
+    .anticon {
+        font-size: 20px;
     }
 `
 
 const Logo = styled.img`
     height: 32px;
-    margin-right: 10px;
+    margin-right: 16px;
 `
+
+type ThresholdSettings = {
+    [key in SensorType]?: [number, number]
+} & {
+    alertCount: number
+}
 
 interface NavbarProps {
     isDarkMode: boolean
     onToggleDarkMode: (checked: boolean) => void
+    onSaveSettings: (settings: ThresholdSettings) => void
+    sensors: SensorType[]
+    initialSettings: ThresholdSettings
 }
 
-export const Navbar: React.FC<NavbarProps> = ({isDarkMode, onToggleDarkMode}) => {
+export const Navbar: React.FC<NavbarProps> = ({
+    isDarkMode,
+    onToggleDarkMode,
+    onSaveSettings,
+    sensors,
+    initialSettings
+}) => {
     const [isAboutVisible, setIsAboutVisible] = useState(false)
+    const [isSettingsVisible, setIsSettingsVisible] = useState(false)
 
     return (
         <>
@@ -55,13 +74,26 @@ export const Navbar: React.FC<NavbarProps> = ({isDarkMode, onToggleDarkMode}) =>
                         icon={<InfoCircleOutlined />}
                         onClick={() => setIsAboutVisible(true)}
                         style={buttonStyle}
-                    >
-                        About
-                    </StyledButton>
+                        aria-label="About"
+                    />
+                    <StyledButton
+                        type="text"
+                        icon={<SettingOutlined />}
+                        onClick={() => setIsSettingsVisible(true)}
+                        style={buttonStyle}
+                        aria-label="Settings"
+                    />
                     <Toggle isDarkMode={isDarkMode} onToggle={onToggleDarkMode} />
                 </div>
             </Header>
             <About isVisible={isAboutVisible} onClose={() => setIsAboutVisible(false)} />
+            <SettingsModal
+                isVisible={isSettingsVisible}
+                onClose={() => setIsSettingsVisible(false)}
+                sensors={sensors}
+                onSave={onSaveSettings}
+                initialSettings={initialSettings}
+            />
         </>
     )
 }

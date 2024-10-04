@@ -155,7 +155,11 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
 
     return (
         <StyledCard
-            title={<Title level={4} style={{color: isDarkMode ? '#ffffff' : '#000000'}}>GPS Location</Title>}
+            title={
+                <Title level={4} style={{color: isDarkMode ? '#ffffff' : '#000000'}}>
+                    GPS Location
+                </Title>
+            }
             extra={
                 <Space>
                     <Dropdown menu={{items: downloadItems}} placement="bottomLeft" arrow>
@@ -181,13 +185,15 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
                     style={{height: '400px', width: '100%', marginBottom: 16}}
                 >
                     <TileLayer
-                        url={isDarkMode 
-                            ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-                            : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                        url={
+                            isDarkMode
+                                ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+                                : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                         }
-                        attribution={isDarkMode
-                            ? '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-                            : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        attribution={
+                            isDarkMode
+                                ? '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                                : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         }
                     />
                     <Marker position={[validLatitude, validLongitude]}>
@@ -198,8 +204,8 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
                             {isDefault && (
                                 <>
                                     <br />
-                                    <strong>Note:</strong> Location not available. Showing last known
-                                    location.
+                                    <strong>Note:</strong> Location not available. Showing last
+                                    known location.
                                 </>
                             )}
                         </Popup>
