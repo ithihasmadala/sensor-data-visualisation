@@ -1,0 +1,43 @@
+import {useState, useEffect, useCallback} from 'react'
+import {fetchFieldsMapping, fetchSensorDataForField} from '../api/sensorData'
+
+const UPDATE_INTERVAL = 2 * 60 * 1000 // 2 minutes in milliseconds
+
+export const useSensorData = () => {
+    const [fieldsMapping, setFieldsMapping] = useState<{[key: string]: string}>({})
+    const [sensorData, setSensorData] = useState<{[key: string]: any[]}>({})
+    const [loading, setLoading] = useState(true)
+    const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
+
+    const fetchData = useCallback(async () => {
+        try {
+            const mapping = await fetchFieldsMapping()
+            setFieldsMapping(mapping)
+
+            const dataPromises = Object.entries(mapping).map(([field, sensor], index) =>
+                fetchSensorDataForField(sensor, index + 1)
+            )
+            const results = await Promise.all(dataPromises)
+
+            const newSensorData: {[key: string]: any[]} = {}
+            Object.keys(mapping).forEach((field, index) => {
+                newSensorData[mapping[field]] = results[index]
+            })
+
+            setSensorData(newSensorData)
+            setLastUpdated(new Date())
+        } catch (error) {
+            console.error('Error fetching sensor data:', error)
+        } finally {
+            setLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchData()
+        const intervalId = setInterval(fetchData, UPDATE_INTERVAL)
+        return () => clearInterval(intervalId)
+    }, [fetchData])
+
+    return {fieldsMapping, sensorData, loading, lastUpdated, fetchData}
+}

@@ -2,36 +2,55 @@ import React from 'react'
 import {Space, Typography} from 'antd'
 import {Footer as AntFooter} from 'antd/es/layout/layout'
 import {GithubOutlined} from '@ant-design/icons'
+import {footerStyle, textStyle} from '../styles/footer'
+import styled from 'styled-components'
 
 const {Text, Link} = Typography
 
-const footerStyle: React.CSSProperties = {
-    textAlign: 'center',
-    color: '#ffffff',
-    backgroundColor: '#001529',
-    position: 'fixed',
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+const StyledLink = styled(Link)`
+    .anticon {
+        svg {
+            path {
+                fill: currentColor;
+            }
+        }
+    }
+`
+
+interface FooterProps {
+    isDarkMode: boolean
 }
 
-export const Footer: React.FC = () => (
-    <AntFooter style={footerStyle}>
+export const Footer: React.FC<FooterProps> = ({isDarkMode}) => (
+    <AntFooter style={footerStyle(isDarkMode)}>
         <Space size="middle" align="center">
-            <Text style={{color: 'inherit'}}>© {new Date().getFullYear()} - Freelance Project</Text>
-            <Text type="secondary" style={{color: 'rgba(255, 255, 255, 0.45)'}}>|</Text>
+            <Text style={{color: 'inherit'}}>
+                © {new Date().getFullYear()} - Freelance Project
+            </Text>
+            <Text type="secondary" style={textStyle(isDarkMode)}>
+                |
+            </Text>
             <Text style={{color: 'inherit'}}>v1.0.0</Text>
-            <Text type="secondary" style={{color: 'rgba(255, 255, 255, 0.45)'}}>|</Text>
-            <Link href="https://github.com/ithihasmadala" target="_blank" style={{color: 'inherit'}}>
+            <Text type="secondary" style={textStyle(isDarkMode)}>
+                |
+            </Text>
+            <StyledLink
+                href="https://github.com/ithihasmadala"
+                target="_blank"
+                style={{color: 'inherit'}}
+            >
                 <GithubOutlined /> Ithihas Madala
-            </Link>
-            <Text type="secondary" style={{color: 'rgba(255, 255, 255, 0.45)'}}>|</Text>
-            <Link href="https://github.com/ritvikPuranik" target="_blank" style={{color: 'inherit'}}>
+            </StyledLink>
+            <Text type="secondary" style={textStyle(isDarkMode)}>
+                |
+            </Text>
+            <StyledLink
+                href="https://github.com/ritvikPuranik"
+                target="_blank"
+                style={{color: 'inherit'}}
+            >
                 <GithubOutlined /> Ritvik Puranik
-            </Link>
+            </StyledLink>
         </Space>
     </AntFooter>
 )
