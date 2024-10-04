@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Piscaid/static/css/main.d9a0577f.css",
+    "main.js": "/Piscaid/static/js/main.4019f88b.js",
+    "index.html": "/Piscaid/index.html",
+    "main.d9a0577f.css.map": "/Piscaid/static/css/main.d9a0577f.css.map",
+    "main.4019f88b.js.map": "/Piscaid/static/js/main.4019f88b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9a0577f.css",
+    "static/js/main.4019f88b.js"
+  ]
+}
