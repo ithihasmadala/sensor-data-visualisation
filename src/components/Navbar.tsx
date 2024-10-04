@@ -58,7 +58,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         <>
             <Header style={headerStyle(isDarkMode)}>
                 <div style={navItemsContainerStyle}>
-                    <Logo src="/logo.svg" alt="Sensor Data Viz Logo" />
+                    <Logo 
+                        src={`${process.env.PUBLIC_URL}/logo.svg`} 
+                        alt="Sensor Data Viz Logo" 
+                    />
                     <Title level={3} style={titleStyle}>
                         Sensor Data Viz
                     </Title>

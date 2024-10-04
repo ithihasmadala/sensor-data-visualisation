@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents} from 'react-leaflet'
-import {Card, Typography, Button, message, Space, Dropdown} from 'antd'
+import {Card, Typography, Button, message, Space, Dropdown, Row, Col} from 'antd'
 import {DownloadOutlined, CopyOutlined, CameraOutlined} from '@ant-design/icons'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -153,6 +153,15 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
         }
     ]
 
+    const StyledRow = styled(Row)`
+        margin-top: 16px;
+        margin-bottom: 16px;
+    `;
+
+    const StyledCol = styled(Col)`
+        margin-bottom: 8px;
+    `;
+
     return (
         <StyledCard
             title={
@@ -161,17 +170,23 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
                 </Title>
             }
             extra={
-                <Space>
-                    <Dropdown menu={{items: downloadItems}} placement="bottomLeft" arrow>
-                        <Button icon={<DownloadOutlined />}>Download Metadata</Button>
-                    </Dropdown>
-                    <Button icon={<CopyOutlined />} onClick={copyMetadata}>
-                        Copy Coordinates
-                    </Button>
-                    <Button icon={<CameraOutlined />} onClick={downloadMapImage}>
-                        Download Map
-                    </Button>
-                </Space>
+                <StyledRow gutter={[16, 16]}>
+                    <StyledCol xs={24} sm={24} md={8} lg={8} xl={8}>
+                        <Dropdown menu={{items: downloadItems}} placement="bottomLeft" arrow>
+                            <Button icon={<DownloadOutlined />} block>Download Metadata</Button>
+                        </Dropdown>
+                    </StyledCol>
+                    <StyledCol xs={24} sm={24} md={8} lg={8} xl={8}>
+                        <Button icon={<CopyOutlined />} onClick={copyMetadata} block>
+                            Copy Coordinates
+                        </Button>
+                    </StyledCol>
+                    <StyledCol xs={24} sm={24} md={8} lg={8} xl={8}>
+                        <Button icon={<CameraOutlined />} onClick={downloadMapImage} block>
+                            Download Map
+                        </Button>
+                    </StyledCol>
+                </StyledRow>
             }
             $isDefault={isDefault}
             $isDarkMode={isDarkMode}
@@ -187,12 +202,12 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
                     <TileLayer
                         url={
                             isDarkMode
-                                ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+                                ? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                                 : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                         }
                         attribution={
                             isDarkMode
-                                ? '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                                ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         }
                     />

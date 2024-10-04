@@ -17,15 +17,37 @@ const StyledModal = styled(Modal)`
     .ant-form-item {
         margin-bottom: 24px;
     }
+
+    @media (max-width: 768px) {
+        .ant-modal-content {
+            padding: 16px;
+        }
+
+        .ant-modal-header {
+            margin-bottom: 8px;
+        }
+
+        .ant-form-item {
+            margin-bottom: 16px;
+        }
+    }
 `
 
 const SensorTitle = styled(Title)`
     margin-bottom: 8px !important;
     font-size: 16px !important;
+
+    @media (max-width: 768px) {
+        font-size: 14px !important;
+    }
 `
 
 const StyledInputNumber = styled(InputNumber)`
     width: 70px;
+
+    @media (max-width: 768px) {
+        width: 60px;
+    }
 `
 
 interface SettingsModalProps {
@@ -75,7 +97,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             title={<Title level={4}>Sensor Settings</Title>}
             open={isVisible}
             onCancel={onClose}
-            width={600}
+            width="90%"
+            style={{ maxWidth: '600px' }}
             footer={[
                 <Button key="reset" onClick={handleResetToDefault}>
                     Reset to Default
@@ -93,8 +116,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     return (
                         <Form.Item key={sensor}>
                             <SensorTitle level={5}>{sensor} Threshold Range</SensorTitle>
-                            <Row gutter={16} align="middle">
-                                <Col span={16}>
+                            <Row gutter={[8, 8]} align="middle">
+                                <Col xs={24} sm={16}>
                                     <Form.Item name={sensor} noStyle>
                                         <Slider
                                             range
@@ -104,8 +127,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                                         />
                                     </Form.Item>
                                 </Col>
-                                <Col span={8}>
-                                    <Space>
+                                <Col xs={24} sm={8}>
+                                    <Space size="small">
                                         <Form.Item name={[sensor, 0]} noStyle>
                                             <StyledInputNumber
                                                 min={range.min}
@@ -128,7 +151,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     )
                 })}
                 <Form.Item>
-                    <Space align="baseline">
+                    <Space align="baseline" wrap>
                         <Text>Alert after</Text>
                         <Form.Item name="alertCount" noStyle>
                             <StyledInputNumber min={1} max={20} />
