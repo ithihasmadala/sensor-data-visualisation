@@ -1,8 +1,8 @@
-interface FieldsMapping {
+type FieldsMapping = {
     [key: string]: string
 }
 
-export interface SensorData {
+export type SensorData = {
     timestamp: Date
     value: number
     entryId: string
@@ -28,7 +28,7 @@ export const fetchFieldsMapping = async (): Promise<FieldsMapping> => {
 }
 
 export const fetchSensorDataForField = async (
-    field: string,
+    sensorName: string,
     fieldNumber: number
 ): Promise<SensorData[]> => {
     try {
@@ -40,10 +40,11 @@ export const fetchSensorDataForField = async (
         return result.feeds.map((feed: any) => ({
             timestamp: new Date(feed.created_at),
             value: feed[`field${fieldNumber}`],
+            sensorName,
             entryId: feed.entry_id
         }))
     } catch (error) {
-        console.error(`Error fetching data for ${field}:`, error)
+        console.error(`Error fetching data for ${sensorName}:`, error)
         throw error
     }
 }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Layout, Typography, Button} from 'antd'
-import {BarChartOutlined, InfoCircleOutlined} from '@ant-design/icons'
+import {InfoCircleOutlined} from '@ant-design/icons'
 import {Toggle} from './Toggle/Toggle'
 import {About} from './About'
 import {
@@ -27,6 +27,11 @@ const StyledButton = styled(Button)`
     }
 `
 
+const Logo = styled.img`
+    height: 32px;
+    margin-right: 10px;
+`
+
 interface NavbarProps {
     isDarkMode: boolean
     onToggleDarkMode: (checked: boolean) => void
@@ -39,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({isDarkMode, onToggleDarkMode}) =>
         <>
             <Header style={headerStyle(isDarkMode)}>
                 <div style={navItemsContainerStyle}>
-                    <BarChartOutlined style={logoStyle} />
+                    <Logo src="/logo.svg" alt="Sensor Data Viz Logo" />
                     <Title level={3} style={titleStyle}>
                         Sensor Data Viz
                     </Title>

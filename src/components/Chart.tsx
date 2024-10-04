@@ -3,7 +3,7 @@ import {Card, Empty, Button, Modal, Radio} from 'antd'
 import {DownloadOutlined} from '@ant-design/icons'
 import {Line} from '@ant-design/charts'
 import {SensorData} from '../api/sensorData'
-import {cardStyle, axisLabelStyle} from '../styles/chart'
+import {cardStyle} from '../styles/chart'
 import {exportToCSV, exportToJSON} from '../utils/CommonUtils'
 
 interface ChartProps {
@@ -42,29 +42,11 @@ export const Chart: React.FC<ChartProps> = ({data, sensor, isDarkMode}) => {
         xField: 'timestamp',
         yField: 'value',
         height: 300,
-        xAxis: {
-            type: 'time',
-            label: {
-                formatter: (v: string) => new Date(v).toLocaleDateString(),
-                style: axisLabelStyle(isDarkMode)
+
+        interaction: {
+            tooltip: {
+                marker: false
             }
-        },
-        yAxis: {
-            title: {
-                text: sensor,
-                style: axisLabelStyle(isDarkMode)
-            },
-            label: {
-                style: axisLabelStyle(isDarkMode)
-            }
-        },
-        tooltip: {
-            showMarkers: true,
-            formatter: (datum: SensorData) => ({
-                name: new Date(datum.timestamp).toLocaleString(),
-                value: datum.value,
-                title: `${datum.value} ${sensor}`
-            })
         },
         point: {
             size: 5,
@@ -75,15 +57,8 @@ export const Chart: React.FC<ChartProps> = ({data, sensor, isDarkMode}) => {
                 lineWidth: 2
             }
         },
-        lineStyle: {
+        style: {
             lineWidth: 3
-        },
-        slider: {
-            start: 0,
-            end: 1,
-            trendCfg: {
-                isArea: true
-            }
         },
         responsive: true,
         theme: isDarkMode ? 'dark' : 'light'
@@ -93,16 +68,12 @@ export const Chart: React.FC<ChartProps> = ({data, sensor, isDarkMode}) => {
         <Card
             title={sensor}
             style={cardStyle(isDarkMode)}
-            extra={
-                <Button icon={<DownloadOutlined />} onClick={showModal}>
-                    Download
-                </Button>
-            }
+            extra={<Button icon={<DownloadOutlined />} onClick={showModal}></Button>}
         >
             <Line {...config} />
             <Modal
                 title="Export Data"
-                open={isModalVisible} // Changed from 'visible' to 'open'
+                open={isModalVisible}
                 onOk={handleExport}
                 onCancel={handleCancel}
             >
