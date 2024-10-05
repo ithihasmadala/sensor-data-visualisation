@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Layout, Typography, Button} from 'antd'
 import {InfoCircleOutlined, SettingOutlined} from '@ant-design/icons'
 import {Toggle} from './Toggle/Toggle'
-import {About} from './About'
+import {About} from './AboutModal'
 import {SettingsModal} from './SettingsModal'
 import {headerStyle, titleStyle, buttonStyle, navItemsContainerStyle} from '../styles/navbar'
 import styled from 'styled-components'
@@ -58,10 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <>
             <Header style={headerStyle(isDarkMode)}>
                 <div style={navItemsContainerStyle}>
-                    <Logo 
-                        src={`${process.env.PUBLIC_URL}/logo.svg`} 
-                        alt="Sensor Data Viz Logo" 
-                    />
+                    <Logo src={`${process.env.PUBLIC_URL}/logo.svg`} alt="Sensor Data Viz Logo" />
                     <Title level={3} style={titleStyle}>
                         Sensor Data Viz
                     </Title>

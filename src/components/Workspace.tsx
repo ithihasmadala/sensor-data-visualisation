@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {Row, Col, Spin, Typography} from 'antd'
-import {Chart} from './Chart'
+import {Chart} from './Chart/Chart'
 import {GpsMap} from './GpsMap'
 import {workspaceStyle, loadingContainerStyle, rowStyle} from '../styles/layout'
 import {useSensorData} from '../hooks/useSensorData'

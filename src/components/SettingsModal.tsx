@@ -98,7 +98,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             open={isVisible}
             onCancel={onClose}
             width="90%"
-            style={{ maxWidth: '600px' }}
+            style={{maxWidth: '600px'}}
             footer={[
                 <Button key="reset" onClick={handleResetToDefault}>
                     Reset to Default

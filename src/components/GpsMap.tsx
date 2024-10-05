@@ -156,11 +156,11 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
     const StyledRow = styled(Row)`
         margin-top: 16px;
         margin-bottom: 16px;
-    `;
+    `
 
     const StyledCol = styled(Col)`
         margin-bottom: 8px;
-    `;
+    `
 
     return (
         <StyledCard
@@ -173,7 +173,9 @@ export const GpsMap: React.FC<GpsMapProps> = ({latitude, longitude, isDarkMode})
                 <StyledRow gutter={[16, 16]}>
                     <StyledCol xs={24} sm={24} md={8} lg={8} xl={8}>
                         <Dropdown menu={{items: downloadItems}} placement="bottomLeft" arrow>
-                            <Button icon={<DownloadOutlined />} block>Download Metadata</Button>
+                            <Button icon={<DownloadOutlined />} block>
+                                Download Metadata
+                            </Button>
                         </Dropdown>
                     </StyledCol>
                     <StyledCol xs={24} sm={24} md={8} lg={8} xl={8}>
