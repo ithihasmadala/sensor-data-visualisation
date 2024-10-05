@@ -1,4 +1,3 @@
-import {SensorData} from '../api/sensorData'
 import {SensorType} from '../types/sensors'
 
 export const formatTimeString = (date: Date | null): string => {
@@ -30,15 +29,17 @@ const downloadFile = (content: string, fileName: string, contentType: string) =>
 }
 
 export const formatDate = (timestamp: Date): string => {
-    return timestamp.toLocaleString('en-US', {
+    const options: Intl.DateTimeFormatOptions = {
+        day: 'numeric',
+        month: 'short',
         year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    })
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    }
+
+    return new Intl.DateTimeFormat('en-US', options).format(timestamp)
 }
 
 export const formatValue = (value: number): string => {

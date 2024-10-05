@@ -14,10 +14,16 @@ export interface GpsData {
     timestamp: Date
 }
 
+const API_KEY = process.env.REACT_APP_THINGSPEAK_API_KEY
+
+if (!API_KEY) {
+    console.error('ThingSpeak API key is not set. Please check your environment variables.')
+}
+
 export const fetchFieldsMapping = async (): Promise<FieldsMapping> => {
     try {
         const response = await fetch(
-            'https://api.thingspeak.com/channels/2617252/fields/1.json?api_key=S7MH5E4KBNVDFCHY'
+            `https://api.thingspeak.com/channels/2617252/fields/1.json?api_key=${API_KEY}`
         )
         const result = await response.json()
 
@@ -39,7 +45,7 @@ export const fetchSensorDataForField = async (
 ): Promise<SensorData[]> => {
     try {
         const response = await fetch(
-            `https://api.thingspeak.com/channels/2617252/fields/${fieldNumber}.json?api_key=S7MH5E4KBNVDFCHY`
+            `https://api.thingspeak.com/channels/2617252/fields/${fieldNumber}.json?api_key=${API_KEY}`
         )
         const result = await response.json()
 
@@ -58,7 +64,7 @@ export const fetchSensorDataForField = async (
 export const fetchGpsData = async (): Promise<GpsData | null> => {
     try {
         const response = await fetch(
-            'https://api.thingspeak.com/channels/2617252/feeds/last.json?api_key=S7MH5E4KBNVDFCHY'
+            `https://api.thingspeak.com/channels/2617252/feeds/last.json?api_key=${API_KEY}`
         )
         const result = await response.json()
 
