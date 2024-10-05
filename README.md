@@ -85,10 +85,3 @@ Runs linting, formatting, and type-checking.
 ## Deployment
 
 This project is set up to deploy to GitHub Pages using the `gh-pages` package. To deploy, run:
-
-```
-yarn deploy
-```
-
-This will build the app and push it to the `gh-pages` branch.
-

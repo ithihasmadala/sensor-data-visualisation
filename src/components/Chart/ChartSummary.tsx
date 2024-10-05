@@ -19,7 +19,7 @@ export const ChartSummary: React.FC<ChartSummaryProps> = ({
     if (!latestReading) return null
 
     return (
-        <Card size="small" style={{marginBottom: '16px', height: '120px', overflow: 'auto'}}>
+        <Card size="small" style={{marginBottom: '16px', overflow: 'auto'}}>
             <div style={{marginBottom: '8px'}}>
                 {isBlinking ? (
                     <>

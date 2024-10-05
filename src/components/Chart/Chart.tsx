@@ -70,7 +70,7 @@ export const Chart: React.FC<ChartProps> = ({
 
     const formatXAxis = (tickItem: string) => {
         const date = new Date(tickItem)
-        return date.toLocaleTimeString('en-US', {hour12: false})
+        return date.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'})
     }
 
     const CustomTooltip = ({active, payload, label}: any) => {
@@ -81,12 +81,14 @@ export const Chart: React.FC<ChartProps> = ({
                     className="custom-tooltip"
                     style={{
                         backgroundColor: isDarkMode ? '#333' : '#fff',
-                        padding: '10px',
-                        border: '1px solid #ccc'
+                        padding: '5px',
+                        border: '1px solid #ccc',
+                        fontSize: '12px'
                     }}
                 >
-                    <p>{`Time: ${date.toLocaleString()}`}</p>
-                    <p>{`Value: ${payload[0].value}`}</p>
+                    <p style={{margin: '0'}}>{`Time: ${date.toLocaleString()}`}</p>
+                    <p style={{margin: '0'}}>{`${sensor} Value: ${payload[0].value}`}</p>
+                    <p style={{margin: '0'}}>{`Entry ID: ${payload[0].payload.entryId}`}</p>
                 </div>
             )
         }
@@ -121,31 +123,29 @@ export const Chart: React.FC<ChartProps> = ({
                 isBlinking={isBlinking}
             />
             <ResponsiveContainer width="100%" height={400 - 120 - 32}>
-                <LineChart data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                <LineChart data={data} margin={{top: 5, right: 10, left: 0, bottom: 5}}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                         dataKey="timestamp"
                         tickFormatter={formatXAxis}
-                        style={{fontSize: '12px'}}
-                        allowDataOverflow={false}
-                        allowDecimals={true}
-                        allowDuplicatedCategory={true}
-                        hide={false}
-                        mirror={false}
-                        orientation="bottom"
-                        reversed={false}
+                        style={{fontSize: '10px'}}
+                        tick={{fill: isDarkMode ? '#fff' : '#000'}}
                         tickCount={5}
                         type="category"
                     />
-                    <YAxis style={{fontSize: '12px'}} />
+                    <YAxis 
+                        style={{fontSize: '10px'}} 
+                        tick={{fill: isDarkMode ? '#fff' : '#000'}}
+                        width={30}
+                    />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Line
                         type="monotone"
                         dataKey="value"
                         stroke="#8884d8"
                         strokeWidth={2}
-                        dot={{r: 2}}
-                        activeDot={{r: 5}}
+                        dot={{r: 1}}
+                        activeDot={{r: 4}}
                         animationDuration={300}
                     />
                 </LineChart>
