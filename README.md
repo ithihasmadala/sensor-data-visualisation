@@ -20,6 +20,18 @@ This application fetches sensor data from a ThingSpeak API and displays it using
 - Styled Components 5.3.10
 - Leaflet 1.9.4 (for map visualization)
 
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js: This project requires Node.js version 14.0 or higher. You can download it from [nodejs.org](https://nodejs.org/).
+- Yarn: We use Yarn as our package manager. If you don't have Yarn installed, you can install it after installing Node.js by running:
+  ```
+  npm install -g yarn
+  ```
+
+To verify your installations, run:
+
 ## Getting Started
 
 1. Clone the repository
