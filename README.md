@@ -1,6 +1,6 @@
 # Sensor Data Visualization App
 
-This project is a React application that visualizes sensor data using Ant Design components and charts.
+This project is a React application that visualizes sensor data using Ant Design components and Recharts.
 
 ## Project Overview
 
@@ -9,69 +9,86 @@ This application fetches sensor data from a ThingSpeak API and displays it using
 - A responsive layout with a navbar, workspace, and footer
 - Dynamic chart generation based on fetched sensor data
 - Error handling for data fetching and display
+- GPS data visualization
 
 ## Technologies Used
 
 - React 18.3.1
 - TypeScript 4.9.5
 - Ant Design 5.21.2
-- @ant-design/charts 2.2.1
-- React Scripts 5.0.1
+- Recharts 2.12.7
+- Styled Components 5.3.10
+- Leaflet 1.9.4 (for map visualization)
 
 ## Getting Started
 
 1. Clone the repository
 2. Install dependencies:
    ```
-   npm install
+   yarn install
    ```
-3. Start the development server:
+3. Create a `.env` file in the root directory and add your ThingSpeak API key:
    ```
-   npm start
+   REACT_APP_THINGSPEAK_API_KEY=your_api_key_here
+   ```
+4. Start the development server:
+   ```
+   yarn start
    ```
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in interactive watch mode.
 
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.
 
-### `npm run eject`
+### `yarn deploy`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Builds the app and deploys it to GitHub Pages.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time.
+### `yarn lint`
+
+Runs ESLint to check for code style issues.
+
+### `yarn prettier`
+
+Formats the code using Prettier.
+
+### `yarn validate`
+
+Runs linting, formatting, and type-checking.
 
 ## Key Components
 
 - `App.tsx`: Main application layout
-- `Workspace.tsx`: Fetches and manages sensor data
+- `Workspace.tsx`: Manages sensor data and renders charts
 - `Chart.tsx`: Renders individual charts for each sensor
+- `ChartSummary.tsx`: Displays summary information for each chart
+- `GpsMap.tsx`: Renders a map with GPS coordinates
 
 ## Development Tools
 
 - Prettier: For code formatting
 - ESLint: For code linting (extends React App ESLint configuration)
+- TypeScript: For static type checking
 
-## Browser Support
+## Deployment
 
-- Production: Browsers with >0.2% market share, excluding dead browsers and Opera Mini
-- Development: Latest versions of Chrome, Firefox, and Safari
+This project is set up to deploy to GitHub Pages using the `gh-pages` package. To deploy, run:
 
-## Learn More
+```
+yarn deploy
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will build the app and push it to the `gh-pages` branch.
 
-For Ant Design, visit the [Ant Design documentation](https://ant.design/).
-
-For information on the charts used, see [@ant-design/charts](https://charts.ant.design/).
